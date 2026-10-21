@@ -1,0 +1,38 @@
+[project]
+name = "office-word-to-pdf"
+version = "0.1.0"
+description = "Convert local Word and PDF documents between PDF and DOCX on Windows."
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "markdown-it-py>=3.0.0",
+    "pdf2docx>=0.5.8",
+    "pywin32>=306",
+]
+
+[project.optional-dependencies]
+ocr = [
+    "paddleocr>=3.0.0",
+    "python-docx>=1.1.2",
+]
+
+[project.scripts]
+md2pdf = "md_to_pdf:main"
+pdf2word = "pdf_to_word:main"
+scanpdf2word = "scan_pdf_to_word:main"
+word2pdf = "word_to_pdf:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.2.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = ["md_to_pdf", "pdf_to_word", "scan_pdf_to_word", "word_to_pdf"]
